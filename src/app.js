@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/', (req, res) => {
     res.render('index', {
-        title: 'Weather',
+        title: 'Clima Hoje',
         name: 'Daniel S.'
     })
 })
@@ -33,7 +33,7 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
     res.render('help',{
         help:'Help',
-        message:'Call Me (41)99759-0218',
+        message:'Contato (41)99759-0218',
         title: 'Help',
         name: 'Daniel S.'
     })
