@@ -46,22 +46,16 @@ app.get('/weather', (req, res) => {
     }
     
     geocode(req.query.address,(error, { latitude, longitude, location } = {}) => {    
-        if (error){            
+        if (error){                                 
             return res.send({error})
         }
-        previsao(latitude, longitude, (error, { resumo, temperatura, precipitacao } = {}) =>{        
+        previsao(latitude, longitude, (error, resumo = {}) =>{        
             if(error){                            
                 return res.send({ error })
             }
             //console.log(resumo + ` Com temperatura atual de ${temperatura} celsius. Com ${chanceChuva}% de chance de chuva`)
-            //console.log(location)
-
-            res.send({
-                forecast: resumo, 
-                location: location,
-                temperature: temperatura,
-                rainchance: precipitacao        
-            })        
+            //console.log(location)            
+            res.send({ resumo })        
         })    
     })
 
