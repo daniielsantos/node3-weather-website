@@ -16,15 +16,21 @@ weatherForm.addEventListener('submit', (e) => {
     url = `/weather?address=${location}`
     fetch(url)
     .then((res)=>{
-        if(!res.ok){
-            const data = res.json()
-            messageError.textContent = data
-            //res.send(data)           
+        if(res.ok){
+
+            res.json().then((data)=>{                
+                if(data.resumo){                    
+                    messageOne.textContent = data.resumo            
+                }else {
+                    messageOne.textContent = ''
+                    messageError.textContent = data.error
+                }
+            })                     
+        }else {           
+            messageError.textContent = 'erro de conexão'
+                       
         }
-        res.json().then((data)=>{
-            const clima = `Hoje em ${data.location}. ${data.forecast} Chance de chuva ${data.rainchance}%`
-            messageOne.textContent = clima
-        })
+
     })
     
 })
